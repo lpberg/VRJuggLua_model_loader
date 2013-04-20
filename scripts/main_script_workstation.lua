@@ -22,6 +22,18 @@ local models = {}
 --set different postion for working on workstation (vs. METaL)
 local global_position = {1, 1.5, .25}
 
+local loadModelPathsFromFile = function(filename)
+	local file = assert(io.open(filename, "r"))
+	for v in file:lines() do
+		model = Transform{Model(v)}
+		model_xform = Transform{position = global_position, model}
+		table.insert(models, model)
+		changeTransformColor(model_xform, getRandomColor())
+		RelativeTo.World:addChild(createManipulatableObject(model_xform))
+	end
+end
+
+
 local loadOSGsAndIves = function()
 	for i, v in pairs(arg) do
 		if string.find(v, ".osg") or string.find(v, ".ive") then
@@ -30,9 +42,13 @@ local loadOSGsAndIves = function()
 			table.insert(models, model)
 			changeTransformColor(model_xform, getRandomColor())
 			RelativeTo.World:addChild(createManipulatableObject(model_xform))
+		elseif  string.find(v, ".txt") then
+			loadModelPathsFromFile(v)
 		end
 	end
 end
+
+
 
 loadOSGsAndIves()
 
