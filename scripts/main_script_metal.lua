@@ -5,6 +5,7 @@ vrjLua.appendToModelSearchPath(getScriptFilename())
 nextBtn = gadget.DigitalInterface("WMButtonRight")
 prevBtn = gadget.DigitalInterface("WMButtonLeft")
 dragBtn = gadget.DigitalInterface("WMButtonB")
+resetBtn = gadget.DigitalInterface("WMButton1")
 --for scaling action frame at bottom
 increaseBtn = gadget.DigitalInterface("WMButtonPlus")
 decreaseBtn = gadget.DigitalInterface("WMButtonMinus")
@@ -50,7 +51,7 @@ end
 loadOSGsAndIves()
 
 --adding SimSparted frame action
-SimSparta(dragBtn, nextBtn, prevBtn)
+SimSparta(dragBtn, nextBtn, prevBtn,resetBtn)
 
 -- add frame action for scaling objects 
 Actions.addFrameAction(
