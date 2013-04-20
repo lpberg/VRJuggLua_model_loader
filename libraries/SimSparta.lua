@@ -89,6 +89,7 @@ local function moveAction(dragBtn,nextBtn,prevBtn,resetBtn)
 				end
 				if resetBtn ~= nil then
 					if resetBtn.justPressed then
+						local node = Manipulables[activeObject]
 						node:setMatrix(initial_matricies[activeObject])
 					end
 				end
