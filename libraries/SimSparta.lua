@@ -118,3 +118,17 @@ function SimSparta(dragBtn,nextBtn,prevBtn,resetBtn)
 		print("SimSparta: frame action initiated successfully")
 	end
 end
+--resetALL
+Actions.addFrameAction(
+	function()
+		reset_all_Btn = gadget.DigitalInterface("WMButton2")
+		while true do
+			if reset_all_Btn.justPressed then
+				for i,#Manipulables,1 do
+					Manipulables[i]:setMatrix(initial_matricies[i])
+				end
+			end
+			Actions.waitForRedraw()
+		end
+	end
+)
