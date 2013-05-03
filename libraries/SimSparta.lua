@@ -28,6 +28,7 @@ function createManipulatableObject(xform)
 	local xform_asMatrixTransform = wrapTransformInMatrixTransform(xform)
 	local xform_asScribeSwitch = wrapTransformInBlueScribeSwitch(xform_asMatrixTransform)
 	table.insert(Manipulables, xform_asMatrixTransform)
+	initial_matricies[xform_asMatrixTransform] = xform_asMatrixTransform:getMatrix()
 	table.insert(initial_matricies, xform_asMatrixTransform:getMatrix())
 	table.insert(Manipulables_Switches, xform_asScribeSwitch)
 
@@ -124,8 +125,8 @@ Actions.addFrameAction(
 		reset_all_Btn = gadget.DigitalInterface("WMButton2")
 		while true do
 			if reset_all_Btn.justPressed then
-				for i,#Manipulables,1 do
-					Manipulables[i]:setMatrix(initial_matricies[i])
+				for _,node in ipairs(Manipulables) do
+					node:setMatrix(initial_matricies[node])
 				end
 			end
 			Actions.waitForRedraw()
