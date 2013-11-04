@@ -13,7 +13,7 @@ runfile([[../libraries/simpleLights.lua]])
 
 local models = {}
 
-manipulate = false
+manipulate = true
 useMETaLButtons = true
 
 if useMETaLButtons then

@@ -13,8 +13,8 @@ runfile([[../libraries/simpleLights.lua]])
 
 local models = {}
 
-manipulate = false
-useMETaLButtons = true
+manipulate = true
+useMETaLButtons = false
 
 if useMETaLButtons then
 	print("VRJuggLua_Model_Loader: Loading METaL Buttons")
