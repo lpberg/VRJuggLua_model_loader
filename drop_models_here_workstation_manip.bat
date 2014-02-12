@@ -1,4 +1,4 @@
 cd "%~dp0"
 V:\Applications\vrjugglua\windows-snapshot\bin\NavTestbed.exe ^
-scripts\main_script_workstation_manip.lua %*
+%~dp0\scripts\main_script_workstation_manip.lua %*
 
