@@ -40,12 +40,10 @@ local function loadModel(file_name, a)
 	if not a.hasColor then
 		changeTransformColor(model, getRandomColor())
 	end
-	if a.manipulate then
-		model_xform = Transform{position = a.position, model}
-		table.insert(a.models, model)
-		model = createManipulatableObject(model_xform)
+	if not a.manipulate then
+		a.parent:addChild(model)
 	end
-	a.parent:addChild(model)
+	table.insert(a.models, model)
 end
 
 local function loadModelFilesFromTxtFile(a)
@@ -55,7 +53,6 @@ local function loadModelFilesFromTxtFile(a)
 		loadModel(v, a)
 	end
 end
-
 
 local function loadIndividualModelFiles(a)
 	for i, v in pairs(arg) do
@@ -89,7 +86,7 @@ local function assignButtons(a)
 end
 
 local function addScalingFrameAction(a)
-	-- only gets added if buttons are defined
+-- only gets added if buttons are defined
 	if a.increaseBtn and a.decreaseBtn then
 		Actions.addFrameAction(
 			function()
@@ -132,12 +129,20 @@ function modelLoader(a)
 		local factory = runfile([[../libraries/loadBasicFactory.lua]])
 		a.parent:addChild(factory)
 	end
+	if a.manipulate then
+		SimSparta{
+			parent = a.parent,
+			models = a.models,
+			cycleThroughParts = true,
+			dragBtn = a.dragBtn,
+			nextBtn = a.nextBtn,
+			prevBtn = a.prevBtn,
+			resetBtn = a.resetBtn,
+		}
+	end
 	a.parent = CenterTransformAtPosition(a.parent, a.position)
 	if a.parent:getNumChildren() > 0 then
 		RelativeTo.World:addChild(a.parent)
-	end
-	if a.manipulate then
-		SimSparta(a.dragBtn, a.nextBtn, a.prevBtn, a.resetBtn)
 	end
 	if a.outToIVE and a.outPath then
 		osgLua.saveObjectFile(a.parent, a.outPath)
