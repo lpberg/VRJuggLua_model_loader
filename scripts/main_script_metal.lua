@@ -5,7 +5,7 @@ AddAppDirectory()
 runfile[[main_base.lua]]
 
 modelLoader{
-	factory = false,
+	factory = true,
 	metal = true,
 	manipulate = true,
 	parent = nil,

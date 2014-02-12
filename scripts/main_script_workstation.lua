@@ -5,11 +5,11 @@ AddAppDirectory()
 runfile[[main_base.lua]]
 
 modelLoader{
-	factory = false,
+	factory = true,
 	metal = false,
 	manipulate = false,
 	parent = nil,
-	scale = 1/100,
+	scale = 1,
 	position = nil,
 	outToIVE = false,
 	hasColor = false,
