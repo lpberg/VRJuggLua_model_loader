@@ -140,10 +140,14 @@ function modelLoader(a)
 			resetBtn = a.resetBtn,
 		}
 	end
-	a.parent = CenterTransformAtPosition(a.parent, a.position)
+	if a.centerPosition then
+		a.parent = CenterTransformAtPosition(a.parent, a.centerPosition)
+	end
+	
 	if a.parent:getNumChildren() > 0 then
 		RelativeTo.World:addChild(a.parent)
 	end
+	
 	if a.outToIVE and a.outPath then
 		osgLua.saveObjectFile(a.parent, a.outPath)
 	end
