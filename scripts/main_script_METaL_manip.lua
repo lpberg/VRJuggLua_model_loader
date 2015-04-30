@@ -9,7 +9,7 @@ modelLoader{
 	metal = true,
 	manipulate = true,
 	parent = nil,
-	scale = 1,
+	scale = 2/1,
 	position = {0,1,0},
 	hasColor = false,
 	outToIVE = false,
